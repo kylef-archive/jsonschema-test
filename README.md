@@ -2,7 +2,9 @@
 
 [![Build Status](http://img.shields.io/travis/kylef/jsonschema-test/master.svg?style=flat)](https://travis-ci.org/kylef/jsonschema-test)
 
-jsonschema-test is a tool which for running tests against a JSON Schema.
+jsonschema-test is a tool for writing and running tests against a given
+JSON Schema. You can write a set of test-cases including example JSON
+values and if they should validate or not against the given JSON Schema.
 
 ![](Screenshot.png)
 
@@ -92,6 +94,10 @@ array containing each test.
 - `description` (string, required) - The description of this test case.
 - `data` (any, required) - The JSON used against the JSON Schema.
 - `valid` (boolean, required) - If the `data` should validate or not.
+
+## Credits
+
+This tool was built by [Kyle Fuller](http://fuller.li/) ([@kylefuller](https://twitter.com/kylefuller)).
 
 ## License
 

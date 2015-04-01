@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='jsonschema-test',
     version='1.0.0',
-    description='TODO.',
+    description='A tool for writing and running tests against a given JSON Schema.',
     url='https://github.com/kylef/jsonschema-test',
     packages=['jsonschema_test'],
     package_data={
