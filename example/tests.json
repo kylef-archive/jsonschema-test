@@ -1,0 +1,28 @@
+[
+    {
+        "description": "a person",
+        "tests": [
+            {
+                "description": "validates with a name",
+                "data": {
+                    "name": "Kyle"
+                },
+                "valid": true
+            },
+            {
+                "description": "fails validation without a name",
+                "data": {
+                },
+                "valid": false
+            },
+            {
+                "description": "fails validation when the name is not a string",
+                "data": {
+                    "name": null
+                },
+                "valid": false
+            }
+        ]
+    }
+]
+

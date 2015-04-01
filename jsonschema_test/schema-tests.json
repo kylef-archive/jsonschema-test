@@ -1,0 +1,314 @@
+[
+    {
+        "description": "suite data type",
+        "tests": [
+            {
+                "description": "validates with an array type",
+                "data": [],
+                "valid": true
+            },
+            {
+                "description": "fails to validate with a null type",
+                "data": null,
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a boolean type",
+                "data": true,
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a number type",
+                "data": 1,
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a string type",
+                "data": "",
+                "valid": false
+            },
+            {
+                "description": "fails to validate with an object type",
+                "data": {},
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "test data type",
+        "tests": [
+            {
+                "description": "validates with an object type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": []
+                    }
+                ],
+                "valid": true
+            },
+            {
+                "description": "fails to validate with a null type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ null ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a boolean type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ true ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a number type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ 1 ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a string type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ "" ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with an array type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ [] ]
+                    }
+                ],
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "case data type",
+        "tests": [
+            {
+                "description": "validates with an object type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": "",
+                                "data": [],
+                                "valid": true
+                            }
+                        ]
+                    }
+                ],
+                "valid": true
+            },
+            {
+                "description": "fails to validate with a null type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ null ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a boolean type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ true ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a number type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ 1 ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a string type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ "" ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with an array type",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [ [] ]
+                    }
+                ],
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "test object keys",
+        "tests": [
+            {
+                "description": "fails to validate without a description",
+                "data": [
+                    {
+                        "tests": []
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a non-string description",
+                "data": [
+                    {
+                        "description": null,
+                        "tests": []
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate without any tests",
+                "data": [
+                    {
+                        "description": ""
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a non-array tests",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": null
+                    }
+                ],
+                "valid": false
+            }
+        ]
+    },
+    {
+        "description": "case object keys",
+        "tests": [
+            {
+                "description": "with a valid case",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": "",
+                                "data": null,
+                                "valid": true
+                            }
+                        ]
+                    }
+                ],
+                "valid": true
+            },
+            {
+                "description": "fails to validate without a description",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "data": null,
+                                "valid": true
+                            }
+                        ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to validate with a non-string description",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": null,
+                                "data": null,
+                                "valid": true
+                            }
+                        ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to without data",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": "",
+                                "valid": true
+                            }
+                        ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails to without valid",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": "",
+                                "data": null
+                            }
+                        ]
+                    }
+                ],
+                "valid": false
+            },
+            {
+                "description": "fails without a boolean valid",
+                "data": [
+                    {
+                        "description": "",
+                        "tests": [
+                            {
+                                "description": "",
+                                "data": null,
+                                "valid": null
+                            }
+                        ]
+                    }
+                ],
+                "valid": false
+            }
+        ]
+    }
+]

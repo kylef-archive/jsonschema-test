@@ -1,0 +1,8 @@
+language: python
+- "2.7"
+- "3.4"
+install:
+- pip install .
+script:
+- jsonschema-test jsonschema_test/schema.json jsonschema_test/schema-tests.json
+- jsonschema-test example/schema.json example/tests.json
