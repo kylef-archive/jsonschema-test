@@ -95,7 +95,7 @@ def validate_json(filename, verbose=False):
         except Exception as e:
             print('{} does not contain valid JSON.'.format(filename))
             if verbose:
-                print e
+                print(e)
             exit(2)
 
 
