@@ -2,14 +2,14 @@ import sys
 import os
 import json
 from jsonschema import validate
-
+import argparse
 
 def load_json(path):
     with open(path) as fp:
         return json.load(fp)
 
 
-def load_json_suite(path):
+def load_json_suite(path, verbose=False):
     schema = test_schema()
     suite = load_json(path)
 
@@ -18,6 +18,8 @@ def load_json_suite(path):
     except Exception as e:
         print('{} is not a valid test file.'.format(path))
         print(e)
+        if verbose:
+                print(e)
         exit(2)
 
     return suite
@@ -37,9 +39,9 @@ def test_schema():
     return load_json(path)
 
 
-def test(schema_path, suite_paths):
+def test(schema_path, suite_paths, verbose=False):
     schema = load_json(schema_path)
-    suites = map(load_json_suite, suite_paths)
+    suites = [load_json_suite(f, verbose) for f in suite_paths]
 
     passes = 0
     failures = 0
@@ -82,7 +84,7 @@ def usage():
     print('Usage: {} <schema> [test suites, ...]'.format(sys.argv[0]))
 
 
-def validate_json(filename):
+def validate_json(filename, verbose=False):
     if not os.path.isfile(filename):
         print('{} does not exist.'.format(filename))
         exit(2)
@@ -92,21 +94,23 @@ def validate_json(filename):
             json.load(fp)
         except Exception as e:
             print('{} does not contain valid JSON.'.format(filename))
+            if verbose:
+                print e
             exit(2)
 
 
 def main():
-    if len(sys.argv) > 1:
-        for filename in sys.argv[1:]:
-            validate_json(filename)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--verbose', help='Provide verbose output', action='store_true')
+    parser.add_argument('schema', help='The schema to use for validation')
+    parser.add_argument('test_suites', nargs='+', help='The files containing test suites.')
+    args = parser.parse_args()
 
-        schema = sys.argv[1]
-        suites = sys.argv[2:]
+    print args
+    for filename in args.test_suites:
+        validate_json(filename, args.verbose)
 
-        if len(suites) > 0:
-            test(schema, suites)
-    else:
-        usage()
+    test(args.schema, args.test_suites, verbose=args.verbose)
 
 
 if __name__ == '__main__':
