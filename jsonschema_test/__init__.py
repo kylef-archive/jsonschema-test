@@ -106,7 +106,6 @@ def main():
     parser.add_argument('test_suites', nargs='+', help='The files containing test suites.')
     args = parser.parse_args()
 
-    print args
     for filename in args.test_suites:
         validate_json(filename, args.verbose)
 
