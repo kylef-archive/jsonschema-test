@@ -44,10 +44,12 @@ the [test suite structure](#test-suite-structure) for more information
                 },
                 "valid": false
             },
+            {
                 "description": "Load a test from a file.",
-                "file":true,
+                "file": true,
                 "data": "mytest.json",
                 "valid": true
+            }
         ]
     }
 ]
