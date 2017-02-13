@@ -58,6 +58,7 @@ def test(schema_path, suite_paths, verbose=False):
                 except Exception as e:
                     if test['valid']:
                         success = False
+                    failure_message = str(e)
                 else:
                     if not test['valid']:
                         success = False
@@ -71,6 +72,8 @@ def test(schema_path, suite_paths, verbose=False):
                     print('    Expected data to validate as: {}'.format(test['valid']))
                     print('    ' + json.dumps(test['data']))
                     print('')
+                    if verbose:
+                        print(failure_message)
 
             print('')
 
