@@ -1,5 +1,6 @@
 import sys
 import os
+import os.path
 import json
 from jsonschema import validate
 import argparse
@@ -22,7 +23,7 @@ def load_json_suite(path, verbose=False):
                 print(e)
         exit(2)
 
-    return suite
+    return (suite, path)
 
 
 def print_ansi(code, text):
@@ -47,6 +48,10 @@ def test(schema_path, suite_paths, verbose=False):
     failures = 0
 
     for suite in suites:
+        path = suite[1]
+        print path
+        suite = suite[0]
+
         for case in suite:
             print_bold('-> {}'.format(case['description']))
 
@@ -54,10 +59,14 @@ def test(schema_path, suite_paths, verbose=False):
                 success = True
 
                 try:
-                    validate(test['data'], schema)
+                    if "file" in test and test['file']:
+                        validate(load_json(os.path.dirname(path) + os.sep + test["data"]), schema)
+                    else:
+                        validate(test['data'], schema)
                 except Exception as e:
                     if test['valid']:
                         success = False
+                    failure_message = str(e)
                 else:
                     if not test['valid']:
                         success = False
@@ -71,6 +80,8 @@ def test(schema_path, suite_paths, verbose=False):
                     print('    Expected data to validate as: {}'.format(test['valid']))
                     print('    ' + json.dumps(test['data']))
                     print('')
+                    if verbose:
+                        print(failure_message)
 
             print('')
 
