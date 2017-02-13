@@ -22,7 +22,7 @@ def load_json_suite(path, verbose=False):
                 print(e)
         exit(2)
 
-    return suite
+    return (suite, path)
 
 
 def print_ansi(code, text):
@@ -47,6 +47,9 @@ def test(schema_path, suite_paths, verbose=False):
     failures = 0
 
     for suite in suites:
+        path = suite[1]
+        suite = suite[0]
+
         for case in suite:
             print_bold('-> {}'.format(case['description']))
 
@@ -54,7 +57,10 @@ def test(schema_path, suite_paths, verbose=False):
                 success = True
 
                 try:
-                    validate(test['data'], schema)
+                    if "file" in test and test['file']:
+                        validate(load_json(path + os.sep + test["data"]), schema)
+                    else:
+                        validate(test['data'], schema)
                 except Exception as e:
                     if test['valid']:
                         success = False
