@@ -43,7 +43,11 @@ the [test suite structure](#test-suite-structure) for more information
                 "data": {
                 },
                 "valid": false
-            }
+            },
+                "description": "Load a test from a file.",
+                "file":true,
+                "data": "mytest.json",
+                "valid": true
         ]
     }
 ]
@@ -92,7 +96,8 @@ array containing each test.
 #### Properties
 
 - `description` (string, required) - The description of this test case.
-- `data` (any, required) - The JSON used against the JSON Schema.
+- `file` (boolean, optional) - When true, indicate that the `data` property is a filepath to the test, rather than actual test data. The filepath is relative to the current test suite file.
+- `data` (any, required) - The JSON used against the JSON Schema or the filepath to the test file.
 - `valid` (boolean, required) - If the `data` should validate or not.
 
 ## Credits

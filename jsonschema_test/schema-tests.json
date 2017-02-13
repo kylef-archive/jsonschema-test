@@ -310,5 +310,28 @@
                 "valid": false
             }
         ]
+    },
+    {
+        "description":"Test loading from files.",
+        "tests":[
+            {
+                "description":"A simple load from the same directory.",
+                "file":true,
+                "data":"simple_test.json",
+                "valid":true
+            },
+            {
+                "description":"A load from another directory.",
+                "file":true,
+                "data":"test_dir/simple_test.json",
+                "valid":true
+            },
+            {
+                "description":"Specify file as false and operate as normal.",
+                "file":false,
+                "data":[],
+                "valid":true
+            }
+        ]
     }
 ]

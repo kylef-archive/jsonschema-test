@@ -1,5 +1,6 @@
 import sys
 import os
+import os.path
 import json
 from jsonschema import validate
 import argparse
@@ -48,6 +49,7 @@ def test(schema_path, suite_paths, verbose=False):
 
     for suite in suites:
         path = suite[1]
+        print path
         suite = suite[0]
 
         for case in suite:
@@ -58,7 +60,7 @@ def test(schema_path, suite_paths, verbose=False):
 
                 try:
                     if "file" in test and test['file']:
-                        validate(load_json(path + os.sep + test["data"]), schema)
+                        validate(load_json(os.path.dirname(path) + os.sep + test["data"]), schema)
                     else:
                         validate(test['data'], schema)
                 except Exception as e:
