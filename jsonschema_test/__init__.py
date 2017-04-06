@@ -30,6 +30,7 @@ def print_ansi(code, text):
 print_bold = lambda text: print_ansi(1, text)
 print_green = lambda text: print_ansi(32, text)
 print_red = lambda text: print_ansi(31, text)
+print_yellow = lambda text: print_ansi(33, text)
 
 
 def test_schema():
@@ -43,12 +44,28 @@ def test(schema_path, suite_paths):
 
     passes = 0
     failures = 0
+    skipped = 0
 
     for suite in suites:
         for case in suite:
+            if case.get('skip', False):
+                print_yellow('-> {} (skipped)'.format(case['description']))
+
+                for test in case['tests']:
+                    print_yellow('  -> {} (skipped)'.format(test['description']))
+                    skipped += 1
+
+                print('')
+                continue
+
             print_bold('-> {}'.format(case['description']))
 
             for test in case['tests']:
+                if test.get('skip', False):
+                    skipped += 1
+                    print_yellow('  -> {} (skipped)'.format(test['description']))
+                    continue
+
                 success = True
 
                 try:
@@ -72,7 +89,10 @@ def test(schema_path, suite_paths):
 
             print('')
 
-    print('{} passes, {} failures'.format(passes, failures))
+    if skipped > 0:
+        print('{} passes, {} skipped, {} failures'.format(passes, skipped, failures))
+    else:
+        print('{} passes, {} failures'.format(passes, failures))
 
     if failures:
         exit(1)

@@ -86,6 +86,7 @@ array containing each test.
 
 - `description` (string, required) - A short description of what this test tests.
 - `tests` (array[Case], required) - A collection of test cases.
+- `skip` (boolean, optional) - Whether to skip the test. This defaults to false.
 
 ### Case
 
@@ -94,6 +95,7 @@ array containing each test.
 - `description` (string, required) - The description of this test case.
 - `data` (any, required) - The JSON used against the JSON Schema.
 - `valid` (boolean, required) - If the `data` should validate or not.
+- `skip` (boolean, optional) - Whether to skip the case. This defaults to false.
 
 ## Credits
 
