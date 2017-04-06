@@ -28,6 +28,9 @@
                 "description": {
                     "type": "string"
                 },
+                "file": {
+                    "type":"boolean"
+                },
                 "data": {
                 },
                 "valid": {
